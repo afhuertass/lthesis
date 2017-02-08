@@ -21,7 +21,7 @@ n_rows , n_cols = dataFrame.shape
 # lista de etapas  ( n = 3 , 2 , 1 )
 etapas = range( n_cols -1 , 0 , -1 )
 
-print etapas 
+#print etapas 
 
 f_max_prev = None # variables f estrella y x estrella del libro
 x_max_prev = None #
@@ -36,9 +36,9 @@ for etapa in etapas:
 
         data = (f_max_prev , x_max_prev)
         Fs[etapa] = data 
-        print f_max_prev
+        #print f_max_prev
     else:
-        print("### step ### ")
+       # print("### step ### ")
         f_aux = None
 
         f_max_new = []
@@ -58,12 +58,12 @@ for etapa in etapas:
                 if np.isnan(fn) :
                     fn = 0.0 
                 lx.append( fn )
-            print lx
+            #print lx
             val_max = max(lx)
             ind_max = lx.index(val_max)
             
-            print("val max:" + str(val_max))
-            print("ind max :" + str(ind_max))
+            #print("val max:" + str(val_max))
+            #print("ind max :" + str(ind_max))
             #factor = f_max_prev.shift(  (xs) )
             f_max_new.append( val_max )
             x_max_new.append( ind_max )
@@ -84,7 +84,24 @@ for etapa in etapas:
 
 brigadas_restantes = 5
 
+for pais in range(1 , 4):
 
+    if pais == 1 :
+        
+        val_max = max( Fs[pais][0 ]  )
+        ind_solucion = Fs[pais][0].index( val_max )
+        x_solucion = Fs[pais][1][ind_solucion]
+        print ("Valor optimo:" + str( val_max ) )
+        print("Asignar: " + str(x_solucion ) + " Brigadas al pais " + str(pais) )
+        brigadas_restantes = brigadas_restantes - x_solucion
+    else:
+        
+        x_solucion  = Fs[pais][1][brigadas_restantes]
+
+        print("Asignar: " + str(x_solucion ) + " Brigadas al pais " + str(pais) )
+        brigadas_restantes = brigadas_restantes - x_solucion
+        
+"""
 pais = 1
 print Fs[pais][0]
 print Fs[pais][1]
@@ -109,3 +126,5 @@ brigadas_restantes = brigadas_restantes - x_solucion
 x_solucion = Fs[pais][1][brigadas_restantes]
 
 print("Asignar: " + str(x_solucion ) + " Brigadas al pais " + str(pais) )
+
+"""
