@@ -72,7 +72,7 @@ for etapa in etapas:
         f_max_prev = f_max_new[:]
         x_max_prev = x_max_new[:]
 
-        data = ( f_max_prev , x_max_prev)
+        data = ( f_max_new , x_max_new)
         Fs[etapa] = data 
             #fn = fn.fillna(value = 0.0 )
             #fn = fn.transpose()
@@ -82,3 +82,30 @@ for etapa in etapas:
 #print f_max_prev
 #print f_max_prev.shift( periods = 1)
 
+brigadas_restantes = 5
+
+
+pais = 1
+print Fs[pais][0]
+print Fs[pais][1]
+
+val_max = max( Fs[pais][0 ]  )
+
+ind_solucion = Fs[pais][0].index( val_max )
+x_solucion = Fs[pais][1][ind_solucion]
+print x_solucion
+
+print("Asignar: " + str(x_solucion ) + " Brigadas al pais " + str(pais) )
+
+    
+pais = 2
+brigadas_restantes = brigadas_restantes - x_solucion
+x_solucion  = Fs[pais][1][brigadas_restantes]
+
+print("Asignar: " + str(x_solucion ) + " Brigadas al pais " + str(pais) )
+
+pais = 3
+brigadas_restantes = brigadas_restantes - x_solucion
+x_solucion = Fs[pais][1][brigadas_restantes]
+
+print("Asignar: " + str(x_solucion ) + " Brigadas al pais " + str(pais) )
