@@ -26,12 +26,16 @@ print etapas
 f_max_prev = None # variables f estrella y x estrella del libro
 x_max_prev = None #
 
+Fs = dict() # 
 for etapa in etapas:
 
     if  etapa == n_cols -1 :
         
         f_max_prev = dataFrame.iloc[:  , -1 ]
         x_max_prev = dataFrame.iloc[: , 0 ]
+
+        data = (f_max_prev , x_max_prev)
+        Fs[etapa] = data 
         print f_max_prev
     else:
         print("### step ### ")
@@ -67,6 +71,9 @@ for etapa in etapas:
 
         f_max_prev = f_max_new[:]
         x_max_prev = x_max_new[:]
+
+        data = ( f_max_prev , x_max_prev)
+        Fs[etapa] = data 
             #fn = fn.fillna(value = 0.0 )
             #fn = fn.transpose()
             
